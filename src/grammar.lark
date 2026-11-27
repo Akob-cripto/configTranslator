@@ -1,0 +1,28 @@
+start: constant* value
+
+constant: "const" NAME "=" value ";"
+reference: "?[" NAME "]"
+
+?value: number
+      | string
+      | array
+      | dictionary
+      | reference
+
+number: NUMBER
+string: STRING
+
+array: "list" "(" (value ("," value)*)? ")"
+
+dictionary: "{" (pair ("," pair)*)? "}"
+pair: NAME ":" value
+
+NAME: /[a-z][a-z0-9_]*/
+NUMBER: /\d+/
+STRING: /@"[^"\n]*"/
+
+%ignore /#[^\n]*/
+%ignore /(?s:=begin.*?=end)/
+
+%import common.WS
+%ignore WS
