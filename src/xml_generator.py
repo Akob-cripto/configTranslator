@@ -1,9 +1,9 @@
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree
 
 
 def create_element(name, value):
     """Создаёт XML-элемент из значения."""
-    element = ET.Element(name)
+    element = xml.etree.ElementTree.Element(name)
 
     if isinstance(value, dict):
         for key, item in value.items():
@@ -22,6 +22,6 @@ def create_element(name, value):
 def generate_xml(data):
     """Преобразует конфигурацию в XML."""
     root = create_element("config", data)
-    ET.indent(root, space="    ")
+    xml.etree.ElementTree.indent(root, space="    ")
 
-    return ET.tostring(root, encoding="unicode")
+    return xml.etree.ElementTree.tostring(root, encoding="unicode")

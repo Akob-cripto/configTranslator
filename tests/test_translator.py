@@ -8,29 +8,42 @@ from src.xml_generator import generate_xml
 
 def test_number():
     """Проверяет обработку числа."""
-    assert parse("123") == 123
+    text = "123"
+    expected = 123
+
+    assert parse(text) == expected
 
 
 def test_string():
     """Проверяет обработку строки."""
-    assert parse('@"Hello"') == "Hello"
+    text = '@"Hello"'
+    expected = "Hello"
+
+    assert parse(text) == expected
 
 
 def test_array():
     """Проверяет обработку массива."""
-    assert parse("list(1, 2, 3)") == [1, 2, 3]
+    text = "list(1, 2, 3)"
+    expected = [1, 2, 3]
+
+    assert parse(text) == expected
 
 
 def test_dictionary():
     """Проверяет обработку словаря."""
-    assert parse("{port: 8080}") == {"port": 8080}
+    text = "{port: 8080}"
+    expected = {"port": 8080}
+
+    assert parse(text) == expected
 
 
 def test_name():
     """Проверяет допустимые символы имени."""
-    assert parse("{server_port1: 8080}") == {
-        "server_port1": 8080
-    }
+    text = "{server_port1: 8080}"
+    expected = {"server_port1": 8080}
+
+    assert parse(text) == expected
 
 
 def test_single_line_comment():
@@ -39,7 +52,9 @@ def test_single_line_comment():
     # Comment
     123
     """
-    assert parse(text) == 123
+    expected = 123
+
+    assert parse(text) == expected
 
 
 def test_multiline_comment():
@@ -51,5 +66,6 @@ def test_multiline_comment():
     =end
     123
     """
-    assert parse(text) == 123
+    expected = 123
 
+    assert parse(text) == expected
